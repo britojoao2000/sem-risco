@@ -38,6 +38,8 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          safe: "hsl(var(--accent-safe))",
+          unsafe: "hsl(var(--accent-unsafe))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -46,31 +48,6 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        safe: {
-          DEFAULT: "hsl(var(--safe))",
-          foreground: "hsl(var(--safe-foreground))",
-          light: "hsl(var(--safe-light))",
-        },
-        unsafe: {
-          DEFAULT: "hsl(var(--unsafe))",
-          foreground: "hsl(var(--unsafe-foreground))",
-          light: "hsl(var(--unsafe-light))",
-        },
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
-          light: "hsl(var(--warning-light))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
         },
       },
       borderRadius: {

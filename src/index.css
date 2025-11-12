@@ -8,112 +8,88 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 210 24% 16%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 210 24% 16%;
-
+    /* Sem Risco Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 210 11% 11%;
+    
+    --card: 0 0% 95%;
+    --card-foreground: 210 11% 11%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 210 24% 16%;
-
-    /* Trustworthy green for safe items */
-    --primary: 142 76% 36%;
+    --popover-foreground: 210 11% 11%;
+    
+    /* Primary: Brand Orange #FFA500 */
+    --primary: 39 100% 50%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 210 24% 16%;
-
-    --muted: 210 20% 92%;
-    --muted-foreground: 210 12% 46%;
-
-    --accent: 142 76% 36%;
+    
+    /* Secondary: Light Grey Cards */
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 210 11% 11%;
+    
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 54%;
+    
+    --accent: 39 100% 50%;
     --accent-foreground: 0 0% 100%;
-
-    /* Red for unsafe items */
-    --destructive: 0 84% 60%;
+    
+    /* Safe/Unsafe Accents */
+    --accent-safe: 134 61% 41%;
+    --accent-unsafe: 354 70% 54%;
+    
+    --destructive: 354 70% 54%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 142 76% 36%;
-
-    --radius: 1rem;
-
-    /* Safe status */
-    --safe: 142 76% 36%;
-    --safe-foreground: 0 0% 100%;
-    --safe-light: 142 60% 95%;
-
-    /* Unsafe status */
-    --unsafe: 0 84% 60%;
-    --unsafe-foreground: 0 0% 100%;
-    --unsafe-light: 0 70% 96%;
-
-    /* Warning status */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
-    --warning-light: 38 90% 95%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 39 100% 50%;
+    
+    --radius: 0.5rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(39 100% 50%), hsl(39 100% 60%));
+    --gradient-safe: linear-gradient(135deg, hsl(134 61% 41%), hsl(134 61% 51%));
+    --gradient-unsafe: linear-gradient(135deg, hsl(354 70% 54%), hsl(354 70% 64%));
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(39 100% 50% / 0.1);
+    --shadow-md: 0 4px 16px hsl(39 100% 50% / 0.15);
+    --shadow-lg: 0 8px 24px hsl(39 100% 50% / 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 210 30% 8%;
-    --foreground: 210 20% 96%;
-
-    --card: 210 28% 12%;
-    --card-foreground: 210 20% 96%;
-
-    --popover: 210 28% 12%;
-    --popover-foreground: 210 20% 96%;
-
-    --primary: 142 70% 45%;
+    --background: 210 11% 11%;
+    --foreground: 0 0% 98%;
+    
+    --card: 210 11% 15%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 210 11% 15%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 39 100% 50%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 20% 16%;
-    --secondary-foreground: 210 20% 96%;
-
-    --muted: 210 20% 16%;
-    --muted-foreground: 210 12% 60%;
-
-    --accent: 142 70% 45%;
+    
+    --secondary: 210 11% 20%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 210 11% 20%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 39 100% 50%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 75% 55%;
+    
+    --accent-safe: 134 61% 51%;
+    --accent-unsafe: 354 70% 64%;
+    
+    --destructive: 354 70% 64%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 20%;
-    --input: 210 20% 20%;
-    --ring: 142 70% 45%;
-
-    --safe: 142 70% 45%;
-    --safe-foreground: 0 0% 100%;
-    --safe-light: 142 30% 15%;
-
-    --unsafe: 0 75% 55%;
-    --unsafe-foreground: 0 0% 100%;
-    --unsafe-light: 0 40% 15%;
-
-    --warning: 38 90% 55%;
-    --warning-foreground: 0 0% 100%;
-    --warning-light: 38 40% 15%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 210 11% 25%;
+    --input: 210 11% 25%;
+    --ring: 39 100% 50%;
   }
 }
 
@@ -123,6 +99,13 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  @supports (font-variation-settings: normal) {
+    body {
+      font-family: 'Inter var', system-ui, -apple-system, sans-serif;
+    }
   }
 }
