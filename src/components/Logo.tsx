@@ -13,45 +13,43 @@ export const Logo = ({ size = 80, className = "" }: LogoProps) => {
       viewBox="0 0 512 512"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial="hidden"
+      animate="visible"
     >
-      {/* Shield Base - Heater shield style with flat top, curved sides, pointed bottom */}
+      {/* SHIELD LAYER 
+        Shape: Heater Shield with rounded top corners and acute bottom tip
+      */}
       <motion.path
-        d="
-          M256 64                    // top-centre apex (soft hump starts here)
-          C256 64 275 64 287 72      // right half of the hump → shoulder
-          C299 80 306 92 306 108     // right shoulder fillet → straight-ish flank
-          C306 124 306 144 304 168   // right flank (slight convex bow)
-          C302 216 290 264 270 312   // right ogival taper begins
-          C260 336 248 356 236 376   // right curve steepens
-          C224 396 212 412 200 424   // right side approaches tip
-          C188 436 176 444 164 448   // right side → bottom tip
-          C152 452 140 456 128 456   // bottom tip (acute but micro-filleted)
-          C116 456 104 452 92 448    // left side leaving tip
-          C80 444 68 436 56 424      // left side continues
-          C44 412 32 396 20 376      // left curve
-          C8 356  4 336  2 312       // left ogive
-          C0 264  0 216  2 168       // left flank
-          C4 144  4 124  4 108       // left shoulder zone
-          C4 92  11 80  23 72        // left shoulder fillet
-          C35 64  54 64  64 64       // left half of the hump → back to apex
-          L256 64 Z                  // close at top-centre
-        "
+        d="M256 472C256 472 448 384 448 136C448 96 448 80 448 64C448 46.3 433.7 32 416 32H96C78.3 32 64 46.3 64 64C64 80 64 96 64 136C64 384 256 472 256 472Z"
         fill="#FF7622"
         stroke="none"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        variants={{
+          hidden: { scale: 0.5, opacity: 0 },
+          visible: { 
+            scale: 1, 
+            opacity: 1, 
+            transition: { duration: 0.5, ease: "easeOut" } 
+          }
+        }}
       />
-      {/* Heart Cutout (white negative space) - centered within shield */}
+
+      {/* HEART LAYER 
+        Shape: Geometric heart centered on the shield
+      */}
       <motion.path
-        d="M256 320 L206 275 C186 257, 184 228, 202 210 C216 196, 238 196, 252 210 L256 214 L260 210 C274 196, 296 196, 310 210 C328 228, 326 257, 306 275 L256 320 Z"
+        d="M256 320.6L235.6 302C163.2 236.4 115.4 193.2 115.4 140.2C115.4 97 149.4 63 192.6 63C217 63 240.4 74.4 256 92.6C271.6 74.4 295 63 319.4 63C362.6 63 396.6 97 396.6 140.2C396.6 193.2 348.8 236.4 276.4 302L256 320.6Z"
         fill="#FFFFFF"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
+        // We center the heart path relative to the viewbox 
+        // (The path above is native to ~512, but we shift it down slightly to optical center)
+        style={{ transformOrigin: "center", translateY: 40 }} 
+        variants={{
+          hidden: { scale: 0, opacity: 0 },
+          visible: { 
+            scale: 1, 
+            opacity: 1, 
+            transition: { delay: 0.2, duration: 0.4, type: "spring", stiffness: 200 } 
+          }
+        }}
       />
     </motion.svg>
   );
