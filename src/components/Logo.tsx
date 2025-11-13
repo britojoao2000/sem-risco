@@ -13,43 +13,57 @@ export const Logo = ({ size = 80, className = "" }: LogoProps) => {
       viewBox="0 0 512 512"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
-      initial="hidden"
-      animate="visible"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* SHIELD LAYER 
-        FIX: The top edge now uses a Bezier curve (C) to create the 
-        "brace" shape (hump in the middle) instead of a flat line.
-      */}
+      {/* Shield silhouette – geometrically accurate heater-style */}
       <motion.path
-        d="M256 48C212 48 130 68 64 96C64 200 110 360 256 480C402 360 448 200 448 96C382 68 300 48 256 48Z"
+        d="
+          M256 64
+          C256 64 275 64 287 72
+          C299 80 306 92 306 108
+          C306 124 306 144 304 168
+          C302 216 290 264 270 312
+          C260 336 248 356 236 376
+          C224 396 212 412 200 424
+          C188 436 176 444 164 448
+          C152 452 140 456 128 456
+          C116 456 104 452 92 448
+          C80 444 68 436 56 424
+          C44 412 32 396 20 376
+          C8 356 4 336 2 312
+          C0 264 0 216 2 168
+          C4 144 4 124 4 108
+          C4 92 11 80 23 72
+          C35 64 54 64 256 64
+          Z
+        "
         fill="#FF7622"
         stroke="none"
-        variants={{
-          hidden: { scale: 0.5, opacity: 0 },
-          visible: { 
-            scale: 1, 
-            opacity: 1, 
-            transition: { duration: 0.5, ease: "easeOut" } 
-          }
-        }}
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
       />
 
-      {/* HEART LAYER 
-        Centered and balanced within the new shield shape
-      */}
+      {/* Heart cut-out (negative space) */}
       <motion.path
-        d="M256 336L234 316C156 245 104 198 104 140C104 92 141 56 189 56C216 56 242 68 256 89C270 68 296 56 323 56C371 56 408 92 408 140C408 198 356 245 278 316L256 336Z"
+        d="
+          M256 320
+          L206 275
+          C186 257 184 228 202 210
+          C216 196 238 196 252 210
+          L256 214
+          L260 210
+          C274 196 296 196 310 210
+          C328 228 326 257 306 275
+          L256 320
+          Z
+        "
         fill="#FFFFFF"
-        // Shifted down slightly (translateY: 30) to sit optically in the "belly" of the shield
-        style={{ transformOrigin: "center", translateY: 30 }} 
-        variants={{
-          hidden: { scale: 0, opacity: 0 },
-          visible: { 
-            scale: 1, 
-            opacity: 1, 
-            transition: { delay: 0.2, duration: 0.4, type: "spring", stiffness: 200 } 
-          }
-        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
       />
     </motion.svg>
   );
