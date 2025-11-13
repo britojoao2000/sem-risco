@@ -19,7 +19,26 @@ export const Logo = ({ size = 80, className = "" }: LogoProps) => {
     >
       {/* Shield Base - Heater shield style with flat top, curved sides, pointed bottom */}
       <motion.path
-        d="M256 80 C256 80, 140 80, 120 100 C100 120, 100 200, 100 240 C100 320, 180 420, 256 460 C332 420, 412 320, 412 240 C412 200, 412 120, 392 100 C372 80, 256 80, 256 80 Z"
+        d="
+          M256 64                    // top-centre apex (soft hump starts here)
+          C256 64 275 64 287 72      // right half of the hump → shoulder
+          C299 80 306 92 306 108     // right shoulder fillet → straight-ish flank
+          C306 124 306 144 304 168   // right flank (slight convex bow)
+          C302 216 290 264 270 312   // right ogival taper begins
+          C260 336 248 356 236 376   // right curve steepens
+          C224 396 212 412 200 424   // right side approaches tip
+          C188 436 176 444 164 448   // right side → bottom tip
+          C152 452 140 456 128 456   // bottom tip (acute but micro-filleted)
+          C116 456 104 452 92 448    // left side leaving tip
+          C80 444 68 436 56 424      // left side continues
+          C44 412 32 396 20 376      // left curve
+          C8 356  4 336  2 312       // left ogive
+          C0 264  0 216  2 168       // left flank
+          C4 144  4 124  4 108       // left shoulder zone
+          C4 92  11 80  23 72        // left shoulder fillet
+          C35 64  54 64  64 64       // left half of the hump → back to apex
+          L256 64 Z                  // close at top-centre
+        "
         fill="#FF7622"
         stroke="none"
         initial={{ pathLength: 0, opacity: 0 }}
