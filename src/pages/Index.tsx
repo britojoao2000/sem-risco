@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Camera, Shield, Search, MapPin, Package, User, Home, Lock, Diamond, Check, AlertTriangle, ChevronLeft } from 'lucide-react';
+import { Heart, Camera, Shield, Search, MapPin, Package, User, Home, Lock, Diamond, Check, AlertTriangle, ChevronLeft } from 'lucide-react';
 
 // --- Data Types ---
 type Allergen = string;
@@ -36,63 +36,63 @@ interface CommunityPost {
 
 // --- Restriction Options ---
 const ALLERGEN_CATEGORIES: Record<string, string[]> = {
-  'Major Allergens': [
-    'Peanuts', 'Tree Nuts (Almonds, Walnuts, Cashews, etc.)', 'Milk/Dairy', 
-    'Eggs', 'Soy', 'Wheat', 'Fish', 'Crustacean Shellfish', 
-    'Sesame', 'Mustard', 'Celery', 'Lupin', 'Mollusks'
+  'Principais Alérgenos': [
+    'Amendoim', 'Oleaginosas (Amêndoas, Nozes, Castanhas, etc.)', 'Leite/Laticínios',
+    'Ovos', 'Soja', 'Trigo', 'Peixe', 'Frutos do Mar (Crustáceos)',
+    'Gergelim', 'Mostarda', 'Aipo (Salsão)', 'Tremoço', 'Moluscos'
   ]
 };
 
 const INTOLERANCE_CATEGORIES: Record<string, string[]> = {
-  'Common Intolerances': [
-    'Gluten', 'Lactose', 'Sulfites', 'Corn', 'MSG', 'Nightshades'
+  'Intolerâncias Comuns': [
+    'Glúten', 'Lactose', 'Sulfitos', 'Milho', 'MSG (Glutamato Monossódico)', 'Solanáceas'
   ]
 };
 
 const RELIGIOUS_CATEGORIES: Record<string, string[]> = {
-  'Halal (Islam)': [
-    'Pork Products', 'Alcohol', 'Blood Products', 'Non-Halal Meat'
+  'Halal (Islã)': [
+    'Produtos Suínos', 'Álcool', 'Produtos Sanguíneos', 'Carne Não-Halal'
   ],
-  'Kosher (Judaism)': [
-    'Pork Products', 'Shellfish', 'Fish without Fins/Scales', 
-    'Non-Kosher Meat', 'Meat & Dairy Mixed'
+  'Kosher (Judaísmo)': [
+    'Produtos Suínos', 'Frutos do Mar (Crustáceos e Moluscos)', 'Peixe sem Barbatanas/Escamas',
+    'Carne Não-Kosher', 'Mistura de Carne e Laticínios'
   ],
-  'Hindu': [
-    'Beef', 'All Meat', 'Eggs', 'Onions & Garlic'
+  'Hindu (Hinduísmo)': [
+    'Carne Bovina', 'Toda Carne', 'Ovos', 'Cebola e Alho'
   ],
-  'Jain': [
-    'All Meat/Fish/Eggs', 'Root Vegetables', 'Honey', 'Fermented Foods'
+  'Jain (Jainismo)': [
+    'Toda Carne/Peixe/Ovos', 'Vegetais de Raiz', 'Mel', 'Alimentos Fermentados'
   ],
-  'Buddhist': [
-    'Meat Products', 'Five Pungent Spices (Onion, Garlic, etc.)'
+  'Budista (Budismo)': [
+    'Produtos de Carne', 'Cinco Especiarias Picantes (Cebola, Alho, etc.)'
   ]
 };
 
 const LIFESTYLE_CATEGORIES: Record<string, string[]> = {
-  'Vegan': [
-    'All Meat', 'Fish & Shellfish', 'Dairy', 'Eggs', 'Honey', 
-    'Gelatin', 'Animal-Derived Ingredients'
+  'Vegano': [
+    'Toda Carne', 'Peixe e Frutos do Mar', 'Laticínios', 'Ovos', 'Mel',
+    'Gelatina', 'Ingredientes de Origem Animal'
   ],
-  'Vegetarian': [
-    'All Meat', 'Fish & Shellfish', 'Gelatin', 'Rennet', 'Lard'
+  'Vegetariano (Ovo-LActo)': [
+    'Toda Carne', 'Peixe e Frutos do Mar', 'Gelatina', 'Coalho', 'Banha'
   ],
-  'Pescatarian': [
-    'Beef', 'Pork', 'Poultry', 'Other Meat'
+  'Pescetariano': [
+    'Carne Bovina', 'Carne Suína', 'Aves', 'Outras Carnes'
   ]
 };
 
 const ADDITIVE_CATEGORIES: Record<string, string[]> = {
-  'Artificial Sweeteners': [
-    'Aspartame', 'Sucralose', 'Saccharin', 'Acesulfame Potassium'
+  'Adoçantes Artificiais': [
+    'Aspartame', 'Sucralose', 'Sacarina', 'Acessulfame de Potássio'
   ],
-  'Artificial Colors': [
-    'Red No. 40', 'Yellow No. 5', 'Yellow No. 6', 'Blue No. 1'
+  'Corantes Artificiais': [
+    'Vermelho 40 (Allura)', 'Amarelo 5 (Tartrazina)', 'Amarelo 6 (Crepúsculo)', 'Azul 1 (Brilhante)'
   ],
-  'Preservatives': [
-    'BHA', 'BHT', 'Sodium Benzoate', 'Sodium Nitrite/Nitrate'
+  'Conservantes': [
+    'BHA', 'BHT', 'Benzoato de Sódio', 'Nitrito/Nitrato de Sódio'
   ],
-  'Other Additives': [
-    'High Fructose Corn Syrup', 'Palm Oil', 'Trans Fats'
+  'Outros Aditivos': [
+    'Xarope de Milho de Alta Frutose', 'Óleo de Palma', 'Gorduras Trans'
   ]
 };
 
@@ -104,8 +104,8 @@ const MOCK_PRODUCTS: Product[] = [
     brand: 'Wickbold', 
     ingredients: ['Amido de Milho', 'Água', 'Farinha de Arroz'], 
     safeFor: {
-      allergies: ['gluten'],
-      intolerances: ['gluten'],
+      allergies: ['Trigo'],
+      intolerances: ['Glúten'],
       religious: ['vegan', 'vegetarian']
     }
   },
@@ -115,8 +115,8 @@ const MOCK_PRODUCTS: Product[] = [
     brand: 'Yopro', 
     ingredients: ['Leite', 'Enzima Lactase', 'Mix de Proteínas'], 
     safeFor: {
-      allergies: [],
-      intolerances: ['lactose'],
+      allergies: ['Leite/Laticínios'],
+      intolerances: ['Lactose'],
       religious: ['vegetarian']
     }
   },
@@ -126,8 +126,8 @@ const MOCK_PRODUCTS: Product[] = [
     brand: 'Belive', 
     ingredients: ['Cacau', 'Farinha de Arroz', 'Stevia'], 
     safeFor: {
-      allergies: ['dairy-protein'],
-      intolerances: ['gluten', 'sugar-free'],
+      allergies: ['Leite/Laticínios'],
+      intolerances: ['Glúten', 'Adoçantes Artificiais'],
       religious: ['vegan', 'vegetarian']
     }
   },
@@ -137,11 +137,312 @@ const MOCK_PRODUCTS: Product[] = [
     brand: 'Nutty', 
     ingredients: ['Amendoim', 'Açúcar', 'Mel'], 
     safeFor: {
+      allergies: ['Amendoim'],
+      intolerances: [],
+      religious: ['vegetarian']
+    }
+  },
+  {
+    id: 5,
+    name: 'Leite Vegetal de Castanha de Caju',
+    brand: 'A Tal da Castanha',
+    ingredients: ['Água', 'Castanha de Caju'],
+    safeFor: {
+      allergies: ['Oleaginosas (Amêndoas, Nozes, Castanhas, etc.)'],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+  {
+    id: 6,
+    name: 'Granola Orgânica Tradicional',
+    brand: 'Mãe Terra',
+    ingredients: ['Aveia', 'Mel', 'Castanha do Pará', 'Passas'],
+    safeFor: {
+      allergies: ['Oleaginosas (Amêndoas, Nozes, Castanhas, etc.)'],
+      intolerances: ['Glúten'],
+      religious: ['vegetarian']
+    }
+  },
+  {
+    id: 7,
+    name: 'Feijão Carioca',
+    brand: 'Kicaldo',
+    ingredients: ['Feijão Carioca'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian', 'halal', 'kosher']
+    }
+  },
+  {
+    id: 8,
+    name: 'Arroz Integral',
+    brand: 'Camil',
+    ingredients: ['Arroz Integral'],
+    safeFor: {
+      allergies: [],
+      intolerances: ['Sulfitos'],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+  {
+    id: 9,
+    name: 'Macarrão de Milho Sem Glúten',
+    brand: 'Urbano',
+    ingredients: ['Farinha de Milho'],
+    safeFor: {
+      allergies: ['Milho'],
+      intolerances: ['Glúten'],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+  {
+    id: 10,
+    name: 'Biscoito Cream Cracker',
+    brand: 'Vitarella',
+    ingredients: ['Farinha de Trigo', 'Óleo Vegetal', 'Sal'],
+    safeFor: {
+      allergies: ['Trigo'],
+      intolerances: ['Glúten'],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+  {
+    id: 11,
+    name: 'Queijo Minas Frescal',
+    brand: 'Tirolez',
+    ingredients: ['Leite', 'Fermento Lácteo', 'Sal'],
+    safeFor: {
+      allergies: ['Leite/Laticínios'],
+      intolerances: ['Lactose'],
+      religious: ['vegetarian']
+    }
+  },
+  {
+    id: 12,
+    name: 'Requeijão Cremoso',
+    brand: 'Danone',
+    ingredients: ['Leite', 'Creme de Leite', 'Sal'],
+    safeFor: {
+      allergies: ['Leite/Laticínios'],
+      intolerances: ['Lactose'],
+      religious: ['vegetarian']
+    }
+  },
+  {
+    id: 13,
+    name: 'Farinha de Mandioca Torrada',
+    brand: 'Yoki',
+    ingredients: ['Mandioca Torrada'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+  {
+    id: 14,
+    name: 'Coxinha de Frango Congelada',
+    brand: 'Sadia',
+    ingredients: ['Frango', 'Farinha de Trigo', 'Leite', 'Temperos'],
+    safeFor: {
+      allergies: ['Trigo', 'Leite/Laticínios', 'Ovos'],
+      intolerances: ['Lactose', 'Glúten'],
+      religious: []
+    }
+  },
+  {
+    id: 15,
+    name: 'Hambúrguer Vegetal',
+    brand: 'Fazenda Futuro',
+    ingredients: ['Proteína de Ervilha', 'Óleo de Coco', 'Beterraba'],
+    safeFor: {
+      allergies: ['Soja'],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 16,
+    name: 'Mortadela de Frango',
+    brand: 'Seara',
+    ingredients: ['Frango', 'Aromas', 'Sal'],
+    safeFor: {
+      allergies: [],
+      intolerances: ['Nitrito/Nitrato de Sódio'],
+      religious: []
+    }
+  },
+
+  {
+    id: 17,
+    name: 'Biscoito de Polvilho',
+    brand: 'Globo',
+    ingredients: ['Polvilho', 'Óleo', 'Sal'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 18,
+    name: 'Cereal Matinal de Arroz',
+    brand: 'Nestlé',
+    ingredients: ['Arroz', 'Açúcar', 'Vitaminas'],
+    safeFor: {
       allergies: [],
       intolerances: [],
       religious: ['vegetarian']
     }
-  }
+  },
+
+  {
+    id: 19,
+    name: 'Mel Orgânico',
+    brand: 'Apiários Silvestres',
+    ingredients: ['Mel Puro'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegetarian']
+    }
+  },
+
+  {
+    id: 20,
+    name: 'Frango Congelado',
+    brand: 'Sadia',
+    ingredients: ['Frango'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['halal']
+    }
+  },
+
+  {
+    id: 21,
+    name: 'Linguiça Toscana',
+    brand: 'Seara',
+    ingredients: ['Carne Suína', 'Temperos'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['hindu']
+    }
+  },
+
+  {
+    id: 22,
+    name: 'Salgadinho de Milho',
+    brand: 'Fandangos',
+    ingredients: ['Milho', 'Aromas'],
+    safeFor: {
+      allergies: ['Milho'],
+      intolerances: [],
+      religious: ['vegetarian']
+    }
+  },
+
+  {
+    id: 23,
+    name: 'Pipoca Natural',
+    brand: 'Yoki',
+    ingredients: ['Milho de Pipoca'],
+    safeFor: {
+      allergies: ['Milho'],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 24,
+    name: 'Café Torrado e Moído',
+    brand: 'Pilão',
+    ingredients: ['Café'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 25,
+    name: 'Creme de Avelã',
+    brand: 'Nutella',
+    ingredients: ['Açúcar', 'Avelã', 'Leite'],
+    safeFor: {
+      allergies: ['Oleaginosas (Amêndoas, Nozes, Castanhas, etc.)', 'Leite/Laticínios'],
+      intolerances: ['Lactose'],
+      religious: ['vegetarian']
+    }
+  },
+
+  {
+    id: 26,
+    name: 'Leite de Coco',
+    brand: 'Sococo',
+    ingredients: ['Extrato de Coco', 'Água'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 27,
+    name: 'Torrada Integral',
+    brand: 'Bauducco',
+    ingredients: ['Farinha de Trigo Integral', 'Óleo Vegetal'],
+    safeFor: {
+      allergies: ['Trigo'],
+      intolerances: ['Glúten'],
+      religious: ['vegetarian']
+    }
+  },
+
+  {
+    id: 28,
+    name: 'Nhoque de Batata Congelado',
+    brand: 'Mezzani',
+    ingredients: ['Batata', 'Farinha de Trigo'],
+    safeFor: {
+      allergies: ['Trigo'],
+      intolerances: ['Glúten'],
+      religious: ['vegetarian']
+    }
+  },
+
+  {
+    id: 29,
+    name: 'Batata Pré-frita Congelada',
+    brand: 'McCain',
+    ingredients: ['Batata', 'Óleo'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
+
+  {
+    id: 30,
+    name: 'Margarina Vegetal',
+    brand: 'Becel',
+    ingredients: ['Óleos Vegetais', 'Vitamina A'],
+    safeFor: {
+      allergies: [],
+      intolerances: [],
+      religious: ['vegan', 'vegetarian']
+    }
+  },
 ];
 
 // Mock products for scanning simulation
@@ -267,10 +568,16 @@ const Logo: React.FC<LogoProps> = ({ size = 'md' }) => {
   };
 
   return (
-    <div className={`${sizeClasses[size]} bg-gradient-to-br from-primary-glow to-primary rounded-2xl flex items-center justify-center shadow-lg`}>
-      <Shield className="w-3/5 h-3/5 text-white" />
+  <div
+    className={`${sizeClasses[size]} bg-gradient-to-br from-primary-glow to-primary rounded-2xl flex items-center justify-center shadow-lg`}
+  >
+    <div className="relative w-3/5 h-3/5 flex items-center justify-center">
+      <Shield className="w-full h-full text-white" />
+      <Heart className="absolute w-1/3 h-1/3 text-white fill-white" />
     </div>
-  );
+  </div>
+);
+
 };
 
 type PageType = 'signup' | 'login' | 'home' | 'map' | 'products' | 'profile' | 'premium' | 'scan';
